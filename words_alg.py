@@ -1,9 +1,9 @@
-# PSEUDO CODE
+# Version1 shortest word first
 from collections import Counter
-raw = open('in.txt') # สตริงยาวๆ
+raw = open('in.txt') # get input from text file
 text = raw.read()
-words = text.split() # แยกมาเป็น list ด้วย space
-dictionary = open('dict.txt')
+words = text.split() # separate textfile with space and assign to list
+dictionary = open('dict.txt') # read mock-up dictionary ** Further update needs for full Thai dictionary **
 dics = dictionary.read()
 dic = dics.split()
 print(f"Dictionary : {dic}")
@@ -11,29 +11,26 @@ out = []
 rem = []
 print(f"Here is variable words {words}\n")
 for word in words:
-    if word in dic: # คำที่แยกมาจาก space ทั้งคำ เป็น คำใน dict
+    if word in dic: # choose phrase to compare with dictionary
         print(f"Word {word} is found\n")
-        out.append(word) #เอาใส่คำตอบสุดท้าย
-        #words.remove(word) # ลบออกจาก list คำที่ต้องเช็ค ไว้ดูคำที่ไม่เหลือใน dict หลังรันครบ ?
+        out.append(word) # if phrase in dictionary add it to out put
+        #words.remove(word)
         #print(f"Here is variable words {words}\n")
     else : 
-        check = "" # สตริงเช็ค ขยายเรื่อยๆ
-        preout = [] # ไว้เก็บคำที่เจอใน line ยาวๆ
+        check = "" # for comparing word to dictionary start with empty string
         for i in range (len(word)):
-            check += word[i] # เช็คเพิ่มทีละตัวอักษร
+            check += word[i] # expand the word one character at a time
             print(f"Here is variable check {check}")
-            if check in dic :
+            if check in dic : # if the word is in dict add it to output
                 print(f"{check} in dic\n")
-                out.append(check) # ถ้ามีตรง เก็บใส่ list
+                out.append(check) 
                 start = word.find(check)
-                word = word[start:]
+                word = word[start:] # change the phrase to continue searching
                 check = ""
                 continue
             else :
                 continue
 
-# ส่วนเหลือ 
 print(f"From input: '{text}'")
-# ที่เจอ
 output = dict(Counter(out))
-print(f"We have {output}") # คำตอบจะออกมาใน Data structure Dictionaty จย้าาาาา
+print(f"We have {output}")
