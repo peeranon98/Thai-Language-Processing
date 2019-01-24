@@ -38,9 +38,9 @@ def soundex(word):
             sd.append(score[g7])
         elif letter in g8 :
             sd.append(score[g8])
-        else :
-            print(f"Error with {letter}")
-    print(f"SD after scoring is {sd}")
+        #else :
+            #print(f"Error with {letter}")
+    #print(f"SD after scoring is {sd}")
     # 4 check next
     #for i in range(len(sd)):
     i = 0
