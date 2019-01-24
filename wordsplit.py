@@ -1,10 +1,10 @@
 from collections import Counter
 #raw = open('in.txt')
 #text = raw.read()
-dictionary = open('dict.txt')
+dictionary = open('TWC_Dict.txt')
 dics = dictionary.read()
 dic = dics.split()
-print(f"Dictionary : {dic}")
+#print(f"Dictionary : {dic}")
 def wordsplit(text):
     out = []
     words = text.split()
@@ -32,13 +32,20 @@ def wordsplit(text):
                     #print(f"{check} is not in dict")
                     check = check[0:-1]
                     continue
-            for rem in preout :
+            t = 0
+            while preout != []:
+                #print(f"rem is {rem}")
+                rem = preout[t]
                 start = word.find(rem)
                 end = start + len(rem)
                 word = word[0:start]+word[end:]
+                #print(word)
                 out.append(rem)
                 preout.remove(rem)
-            out.append(word)
+                #t +=1
+            if word != "" :
+                out.append(word)
+
     #print(f"From input: '{text}'")
     return out
 if __name__ == '__main__':
