@@ -14,24 +14,35 @@ def wordsplit(text):
             #print(f"Word {word} is found\n")
             out.append(word) 
         else : 
-            check = word
+            
             search = True
             preout = []
-            while search:
+            check = word
+            found = False
+            while check!="":
+                if found :
+                    check = word
                 #print(f"Here is variable check {check}")
-                if check in dic :
+                if check not in dic :
+                    #print(f"{check} is not in dict")
+                    check = check[0:-1]
+                    found = False
+                    continue
+                elif check in dic :
                     #print(f"{check} in dic\n")
                     preout.append(check)
                     start = word.find(check)
-                    check = word[start+len(check):]
-                    continue
+                    word = word[start+len(check):]
+                    #print(f"Start+len {start+len(check)}")
+                    found = True
+                    pass
                 elif check == "":
                     #print(f"End checking for line {word}\n")
                     break
-                else :
-                    #print(f"{check} is not in dict")
-                    check = check[0:-1]
-                    continue
+
+                
+                #print(f"Here {preout}")
+
             t = 0
             while preout != []:
                 #print(f"rem is {rem}")
